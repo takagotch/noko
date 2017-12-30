@@ -1,10 +1,10 @@
 require 'nokogiri'
 require 'open-uri'
 
-url = ""
+url = "http://info.finance.yahoo.co.jp/fx/detail/?code=USDJPY=FX/"
 doc = Nokogiri::HTML(open(url))
-bid = doc.xpath().text
-ask = doc.xpath().text
-puts ""
-puts ""
+bid = doc.xpath(//*[@id='USDJPY_detail_bid']).text
+ask = doc.xpath(//*[@id='USDJPY_detail_ask']).text
+puts "Bid(bid): #{bid}"
+puts "Ask(ask): #{ask}"
 

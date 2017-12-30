@@ -10,10 +10,10 @@ end
 
 Net::HTTP.version_1_2
 
-url = ""
+url = "toi.kuronekoyamato.co.jp"
 html = nil
 Net::HTTP.start(url, 80){|http|
-  response = http.post()
+  response = http.post('/cgi-bin/tneko', "number01=#{number}")
   html     = resopnse.body
 }
 if html.nil?
@@ -23,9 +23,9 @@ else
 end
 
 doc = Nokogiri::HTML(html) if !html.nil?
-doc.xpath().each {|element|
-  day    = element.xpath().text
-  status = element.xpath().text
+doc.xpath(".//table[@class='ichiran']/tr[3]").each {|element|
+  day    = element.xpath(".//*[@class='hiduke']/font").text
+  status = element.xpath(".//*[@class='ct']/font").text
   puts day
   puts status
 }
