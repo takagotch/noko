@@ -1,0 +1,11 @@
+<table id="users">
+	<tr>
+	</tr>
+	<% @users.each do |u| %>
+		<%= content_tag(:tr, :class => u.admin? ? 'admin' : nil) do %>
+			<td><%= u.family_name %></td>
+			<td><%= u.given_name  %></td>
+		<% end %>
+	<% end %>
+</table>
+
